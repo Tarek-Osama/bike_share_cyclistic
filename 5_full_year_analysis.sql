@@ -158,7 +158,29 @@ ORDER BY
   1 
 
        
---
+--How did average ride_length change throughout the day for both users?
+
+SELECT
+  CAST(ride_hour AS numeric) AS hour,
+  AVG(ride_length) AS casual_avg,     -- AS member_avg
+  count(ride_id) AS casual_trips      -- AS member_avg
+FROM
+  `cyc-trips-2022.data_2022.now_ready`
+WHERE
+  member_casual = 'casual' --member_casual = 'member', to get member averages.
+GROUP BY
+  1
+ORDER BY
+  1
+
+
+
+
+
+
+
+
+
 
 
 
