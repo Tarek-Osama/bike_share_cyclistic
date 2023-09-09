@@ -5,10 +5,12 @@ Combining all monthly datasets into one full-year table.
   The UNION ALL combines SELECT statements results. 
   SELECT statements results must have the same number of columns 
   and the same data types in each column. 
-  but it does not remove any duplicate rows 
-  no problem, Duplicates have been removed before loading data to query.
+  but it does not remove any duplicate rows, In order to do this we could use UNION DISTINCT
+  but no problem, Duplicates have already been removed before loading data to query in the initial data cleaning stage using MS Excel.
 */
 
+--before running the query, Note: change query sittings for destination to "Set a destination table for query results".
+--to create a permanent table named "all_yr_trips".
 
 SELECT                                 
   * 
