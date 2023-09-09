@@ -1,5 +1,5 @@
 /*Bike-sharing company "Cyclistic" Case Study: 
- Changing data type for some columns and Creating a final table for analysis. 
+ Updating day_of_week and ride_month columns and Creating a final table for analysis. 
 */
 
 --before running the query, Note: change query sittings for destination to "Set a destination table for query results".
@@ -44,3 +44,29 @@ SET
 END
 WHERE
   day_of_week IN ('1', '2', '3', '4', '5', '6', '7')
+
+
+
+ --Updating 'ride_month' to months names.
+
+UPDATE
+  `cyc-trips-2022.data_2022.now_ready`
+SET
+  ride_month =
+  CASE
+    WHEN ride_month = '1' THEN 'January'
+    WHEN ride_month = '2' THEN 'February'
+    WHEN ride_month = '3' THEN 'March'
+    WHEN ride_month = '4' THEN 'April'
+    WHEN ride_month = '5' THEN 'May'
+    WHEN ride_month = '6' THEN 'June'
+    WHEN ride_month = '7' THEN 'July'
+    WHEN ride_month = '8' THEN 'August'
+    WHEN ride_month = '9' THEN 'September'
+    WHEN ride_month = '10' THEN 'October'
+    WHEN ride_month = '11' THEN 'November'
+    WHEN ride_month = '12' THEN 'December'
+END
+WHERE
+  ride_month IN ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12')
+
