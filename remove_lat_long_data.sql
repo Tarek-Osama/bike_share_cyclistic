@@ -1,4 +1,4 @@
-/*
+/*Bike-sharing company "Cyclistic" Case Study: 
 Removing lat and long columns because they will not be used in the analysis.
 */
 
