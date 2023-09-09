@@ -2,7 +2,8 @@
 Removing lat and long columns because they will not be used in the analysis.
 */
 
-
+--before running the query, Note: change query sittings for destination to "Set a destination table for query results".
+--to create a permanent table named "all_yr_but_lat_long".
 
 
 SELECT
