@@ -173,12 +173,83 @@ GROUP BY
 ORDER BY
   1
 
+--What is the most common rideable type for both users? 
+  
+SELECT
+  rideable_type,
+  COUNTIF(member_casual = 'casual') AS casual_trips,
+  COUNTIF(member_casual = 'member') AS member_trips,
+FROM
+  `cyc-trips-2022.data_2022.now_ready`
+GROUP BY
+  1
 
+--What is the average ride length for each rideable type by each user?
 
+SELECT
+  member_casual as user_type,
+  rideable_type,
+  count(*) as total_trips,
+  avg(ride_length) as avg_ride_length,
+  max(ride_length) as max_ride_length,
+  min(ride_length) as min_ride_length
+FROM
+  `cyc-trips-2022.data_2022.now_ready` 
+GROUP BY
+  1, 2
+ORDER BY
+  1  
 
+--A closer look into docked bike data.
 
+SELECT
+  day_of_week,  --ride_month, to get docked trip counts and avg. by month.
+  count(*) as total_trips,
+  avg(ride_length) as avg_ride_length,
+  max(ride_length) as max_ride_length,
+  min(ride_length) as min_ride_length
+FROM
+  `cyc-trips-2022.data_2022.now_ready` 
+WHERE rideable_type = "docked_bike"  
+GROUP BY
+  1
 
+--What are the most common start and end stations for both users? and are there any similarities?
 
+     -- See top 10 start stations for casuals vs. members
+SELECT
+  DISTINCT start_station_name,
+  COUNT(*) AS total,
+  COUNTIF(member_casual ='casual') AS casual_trips,
+  COUNTIF(member_casual = 'member') AS member_trips
+FROM
+  `cyc-trips-2022.data_2022.now_ready`
+WHERE
+  start_station_name IS NOT NULL
+GROUP BY
+  1
+ORDER BY
+  3 DESC  --2 DESC, top 10 in total.
+          --4 DESC, top 10 for members.
+LIMIT 10
+
+      -- See top 10 end stations for casuals vs. members
+
+SELECT
+  DISTINCT end_station_name,
+  COUNT(*) AS total,
+  COUNTIF(member_casual ='casual') AS casual_trips,
+  COUNTIF(member_casual = 'member') AS member_trips
+FROM
+  `cyc-trips-2022.data_2022.now_ready`
+WHERE
+  end_station_name IS NOT NULL
+GROUP BY
+  1
+ORDER BY
+ 3 DESC   --2 DESC, top 10 in total.
+          --4 DESC, top 10 for members.
+LIMIT 10
 
 
 
