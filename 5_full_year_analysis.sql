@@ -252,22 +252,26 @@ ORDER BY
 LIMIT 10
 
 
+  --What is the probability of starting a trip and ending it at the same station for both user types?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SELECT
+  total_trips,
+  total_casual_trips,
+  CasualSameStartEndTrips,
+  ROUND(((CasualSameStartEndTrips / total_casual_trips)*100), 2) AS percentage_of_total_casual,
+  total_member_trips,
+  MemberSameStartEndTrips,
+  ROUND(((MemberSameStartEndTrips / total_member_trips)*100), 2) AS percentage_of_total_member
+FROM (
+  SELECT
+    COUNT(ride_id) AS total_trips,
+    COUNTIF(member_casual = 'casual') AS total_casual_trips,
+    COUNTIF(member_casual = 'casual'
+      AND start_station_name = end_station_name) AS CasualSameStartEndTrips,
+    COUNTIF(member_casual = 'member') AS total_member_trips,
+    COUNTIF(member_casual = 'member'
+      AND start_station_name = end_station_name) AS MemberSameStartEndTrips,
+  FROM
+    `cyc-trips-2022.data_2022.now_ready` )
 
 
