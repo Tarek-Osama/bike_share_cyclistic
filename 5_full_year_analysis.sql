@@ -163,7 +163,7 @@ ORDER BY
 SELECT
   CAST(ride_hour AS numeric) AS hour,
   AVG(ride_length) AS casual_avg,     -- AS member_avg
-  count(ride_id) AS casual_trips      -- AS member_avg
+  count(ride_id) AS casual_trips      -- AS member_trips
 FROM
   `cyc-trips-2022.data_2022.now_ready`
 WHERE
@@ -172,6 +172,22 @@ GROUP BY
   1
 ORDER BY
   1
+
+ -- Aggregating average ride length and total trips per hour for both user type
+  
+  SELECT
+  member_casual as user_type,
+  CAST(ride_hour AS numeric) AS hour,
+  AVG(ride_length) AS avg_ride_length,
+  count(ride_id) AS trips     
+     
+  FROM
+  `cyc-trips-2022.data_2022.now_ready`
+
+  GROUP BY
+    1,2
+  ORDER BY
+    1,2
 
 --What is the most common rideable type for both users? 
   
