@@ -1,8 +1,8 @@
 /*Bike-sharing company "Cyclistic" Case Study: 
-  Analysis on full-year data. 
+  Analysis of full-year data. 
 */
 
---Total Trips count in each month.
+--(1)--Total Trips count in each month.
 
 SELECT
   ride_month,
@@ -45,7 +45,7 @@ FROM `cyc-trips-2022.data_2022.now_ready`
 
 )
 
--- Number of trips and some descriptive statistics on ride length. 
+--(2)-- Number of trips and some descriptive statistics on ride length. 
 
 SELECT  
   member_casual as user_type,
@@ -72,7 +72,7 @@ GROUP BY
 ORDER BY
   2 DESC
 
---Trip counts for both types of users by each day
+--(3)--Trips count for both types of users by each day
 
 SELECT
   day_of_week,
@@ -84,7 +84,7 @@ GROUP BY
   1
 
 
---The average ride time and trip counts by each day for member vs. casual users
+--(4)--The average ride time and trips count by each day for member vs. casual users
 
 SELECT
   member_casual as user_type,
@@ -101,7 +101,7 @@ GROUP BY
 ORDER BY 
   1
 
---Investigating the members' trips on Saturdays that passed the 25-hour cap?
+--(5)--Investigating the members' trips on Saturdays that passed the 25-hour cap?
 
 SELECT
   ride_id,
@@ -125,9 +125,9 @@ WHERE
   extract(hour from ride_length) > 25
 
 
---When did members/casuals usually make a trip?
+--(6, 7, and 8)--When did members/casuals usually make a trip? (6_agg_peak-time_data file)
 
-        -- This table is created for Tableau visualizations.
+        -- Aggregation table is created for Tableau visualizations.
 SELECT
   ride_month,
   day_of_week,
@@ -152,10 +152,11 @@ FROM `cyc-trips-2022.data_2022.now_ready`
 
 GROUP BY
   1
-ORDER BY
-  2  DESC    -- ORDER BY 3 DESC, to get peak hours for members.
+ORDER BY        -- ORDER BY 3 DESC, to get peak hours for members.
+  2  DESC   
 
-        -- Who makes more trips in the mornings?
+  
+        -- Who makes more trips in the mornings/evenings?
 SELECT
   cast(ride_hour as numeric) as hour,
   COUNTIF(member_casual = 'casual') AS casual_trips,
@@ -171,7 +172,7 @@ ORDER BY
   1 
 
        
---How did average ride_length change throughout the day for both users?
+--(9)--How did the average trip duration change throughout the day for both users?
 
 SELECT
   CAST(ride_hour AS numeric) AS hour,
@@ -186,7 +187,7 @@ GROUP BY
 ORDER BY
   1
 
- -- Aggregating average ride length and total trips per hour for both user type
+  -- Aggregating average ride length and total trips per hour for both user type
   
   SELECT
   member_casual as user_type,
@@ -203,7 +204,7 @@ ORDER BY
     1,2
 
                   
-  --Aggregating rideable type data.
+--(10)--Aggregating rideable type data.
 SELECT
 
   member_casual as user_type,
@@ -222,7 +223,7 @@ ORDER BY
   1  
 
 
---What is the most common rideable type for both users? 
+          --What is the most common rideable type for both users? 
   
 SELECT
   rideable_type,
@@ -233,7 +234,7 @@ FROM
 GROUP BY
   1
 
---What is the average ride length for each rideable type by each user?
+         --What is the average ride length for each rideable type by each user?
 
 SELECT
   member_casual as user_type,
@@ -249,7 +250,7 @@ GROUP BY
 ORDER BY
   1  
 
---A closer look into docked bike data.
+--(11)A closer look into docked bike data.
 
 SELECT
   day_of_week,  --ride_month, to get docked trip counts and average by month.
@@ -264,7 +265,7 @@ WHERE rideable_type = "docked_bike"
 GROUP BY
   1
 
---What are the most common start and end stations for both users? and are there any similarities?
+--(12)--What are the most common start and end stations for both users? and are there any similarities?
 
      -- See top 10 start stations for casuals vs. members
 SELECT
@@ -302,7 +303,7 @@ ORDER BY
 LIMIT 10
 
 
-  --What is the probability of starting a trip and ending it at the same station for both user types?
+  --(13)--What is the probability of starting a trip and ending it at the same station for both user types?
 
 SELECT
   total_trips,
@@ -325,3 +326,4 @@ FROM (
     `cyc-trips-2022.data_2022.now_ready` )
 
 
+--Note: hay!! .. For each station of the top 10 list, What is the probability of starting a trip and ending it at the same station for both user types??
