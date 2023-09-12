@@ -2,7 +2,7 @@
   Analysis on full-year data. 
 */
 
---Trips count in each month.
+--Total Trips count in each month.
 
 SELECT
   ride_month,
@@ -13,6 +13,19 @@ GROUP BY
   1
 ORDER BY
   2 DESC
+
+--Trips count in each month for both user types.
+  
+  SELECT
+  member_casual as user_type,
+  ride_month,
+  COUNT(DISTINCT ride_id) AS trips,
+FROM
+  `cyc-trips-2022.data_2022.now_ready`
+GROUP BY
+  1,2
+ORDER BY
+  1 
 
 --Number of trips for each user type and their percentage out of total trips.
   
@@ -189,6 +202,26 @@ ORDER BY
   ORDER BY
     1,2
 
+                  
+  --Aggregating rideable type data.
+SELECT
+
+  member_casual as user_type,
+  rideable_type,
+  day_of_week,
+  count(*) as total_trips,
+  avg(ride_length) as avg_ride_length,
+  max(ride_length) as max_ride_length,
+  min(ride_length) as min_ride_length
+FROM
+  `cyc-trips-2022.data_2022.now_ready` 
+
+GROUP BY
+  1, 2, 3
+ORDER BY
+  1  
+
+
 --What is the most common rideable type for both users? 
   
 SELECT
@@ -219,7 +252,8 @@ ORDER BY
 --A closer look into docked bike data.
 
 SELECT
-  day_of_week,  --ride_month, to get docked trip counts and avg. by month.
+  day_of_week,  --ride_month, to get docked trip counts and average by month.
+                --ride_hour,  to get docked trip counts and average by hour.
   count(*) as total_trips,
   avg(ride_length) as avg_ride_length,
   max(ride_length) as max_ride_length,
