@@ -2,7 +2,7 @@
  Updating day_of_week and ride_month columns and Creating a final table for analysis. 
 */
 
---before running the query, Note: change query sittings for destination to "Set a destination table for query results".
+--before running the query, Note: change query sittings for the destination to "Set a destination table for query results".
 --to create a permanent table named "now_ready".
 
 SELECT
