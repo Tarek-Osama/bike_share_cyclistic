@@ -71,3 +71,16 @@ SELECT
   *
 FROM
   cyc-trips-2022.data_2022.dec
+
+
+  
+      --Number OF trips FOR each month
+
+  
+SELECT
+  EXTRACT(month FROM started_at) AS month,
+  count (distinct ride_id) AS trips
+FROM
+  `cyc-trips-2022.data_2022.all_yr_trips`
+GROUP BY
+  1
