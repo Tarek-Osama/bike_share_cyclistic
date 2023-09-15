@@ -11,13 +11,9 @@ SELECT
   rideable_type,
   started_at,
   ended_at,
-  CAST(EXTRACT(month
-    FROM
-      started_at) AS string) AS ride_month,
+  CAST(EXTRACT(month FROM started_at) AS string) AS ride_month,
   CAST(day_of_week AS STRING) AS day_of_week,
-  CAST(EXTRACT(hour
-    FROM
-      started_at) AS string) AS ride_hour,
+  CAST(EXTRACT(hour FROM started_at) AS string) AS ride_hour,
   ride_length,
   start_station_name,
   start_station_id,
