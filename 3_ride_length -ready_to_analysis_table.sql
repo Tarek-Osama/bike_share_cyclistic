@@ -1,5 +1,5 @@
 /*Bike-sharing company "Cyclistic" Case Study: 
-  adding a ride-length column to table for analysis. 
+  Adding a ride-length column to the table for analysis. 
 */
 
 --before running the query, Note: change query sittings for destination to "Set a destination table for query results".
