@@ -1,5 +1,6 @@
 /*Bike-sharing company "Cyclistic" Case Study: 
- Updating day_of_week and ride_month columns and Creating a final table for analysis. 
+ 1. Updating day_of_week and ride_month columns.
+ 2. Creating a final table for analysis. 
 */
 
 --before running the query, Note: change query sittings for the destination to "Set a destination table for query results".
