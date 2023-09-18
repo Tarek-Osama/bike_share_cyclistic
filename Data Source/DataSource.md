@@ -6,4 +6,6 @@ The data has a different name because Cyclistic is a fictional company. Data has
 
 Cyclistic’s historical trip data for the year **2022** to be analyzed in order to identify trends and relationships. By analyzing trip data, in-depth insights about how casual and annual members differ in bike usage over the year of 2022 could be captured.
 
-I will be using mainly **BigQuery** to analyze data for the whole 12 months after downloading it from the link above and performing some initial data cleaning and transforming in **MS Excel** then uploading files to **BigQuery**.
+I will be using mainly **BigQuery** to analyze data for the whole 12 months after downloading it from the link above and performing some initial data cleaning and transforming in **MS Excel** then uploading files to **BigQuery**.      
+
+Please refer to my [Kaggle Notebook](https://www.kaggle.com/code/tariqosama/cyclistic-bike-share-analysis-project) for more details about the analysis steps I made.
