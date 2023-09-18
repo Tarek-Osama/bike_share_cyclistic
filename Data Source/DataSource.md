@@ -8,4 +8,3 @@ Cyclistic’s historical trip data for the year **2022** to be analyzed in order
 
 I will be using mainly **BigQuery** to analyze data for the whole 12 months after downloading it from the link above and performing some initial data cleaning and transforming in **MS Excel** then uploading files to **BigQuery**.      
 
-Please refer to my [Kaggle Notebook](https://www.kaggle.com/code/tariqosama/cyclistic-bike-share-analysis-project) for more details about the analysis steps I made.
